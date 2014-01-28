@@ -1,0 +1,6 @@
+{:name "refheap"
+ :version "0.0.2"
+ :author "Mihnea Dobrescu-Balaur"
+ :source "https://github.com/mihneadb/lighttable_refheap"
+ :desc "Refheap plugin"
+ :behaviors "refheap.behaviors"}
