@@ -44,6 +44,6 @@
 
 
 (cmd/command {:command ::post-to-refheap
-              :desc "Refheap: Post to refheap"
+              :desc "Refheap: Post to Refheap"
               :exec (fn []
                       (post-to-refheap))})
