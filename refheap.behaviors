@@ -1,2 +1,1 @@
-{:+ {:app [(:lt.objs.plugins/load-js "refheap_compiled.js" true)]
-     :refheap.hello [:lt.plugins.refheap/on-close-destroy]}}
+{:+ {:app [(:lt.objs.plugins/load-js "refheap_compiled.js" true)]}}

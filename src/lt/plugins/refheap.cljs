@@ -10,10 +10,15 @@
   (:require-macros [lt.macros :refer [defui behavior]]))
 
 
+(defui link [url]
+  [:a {:href url} url]
+  :click (fn []
+           (.Shell.openExternal (js/require "nw.gui") url)))
+
+
 (defn post-done [response]
   (let [url (get response "url")]
-;    (popup/popup! {:body [:span "Posted to " [:a {:href url} url]] :buttons [{:label "OK"}]})))
-    (popup/popup! {:body (str "Posted to " url) :buttons [{:label "OK"}]})))
+    (popup/popup! {:body [:span "Posted to " (link url)] :buttons [{:label "OK"}]})))
 
 (defn error-handler [{:keys [status status-text]}]
   (.log js/console (str "Refheap error: " status " " status-text)))
@@ -37,7 +42,8 @@
            :error-handler error-handler
            :handler post-done})))
 
+
 (cmd/command {:command ::post-to-refheap
-              :desc "refheap: Post to refheap"
+              :desc "Refheap: Post to refheap"
               :exec (fn []
                       (post-to-refheap))})

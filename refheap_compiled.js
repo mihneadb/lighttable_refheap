@@ -16605,16 +16605,66 @@ goog.require('lt.objs.tabs');
 goog.require('lt.objs.editor');
 goog.require('lt.objs.editor.pool');
 goog.require('lt.objs.command');
-lt.plugins.refheap.post_done = (function post_done(response){var url = cljs.core.get.call(null,response,"url");return lt.objs.popup.popup_BANG_.call(null,new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"body","body",1016933652),[cljs.core.str("Posted to "),cljs.core.str(url)].join(''),new cljs.core.Keyword(null,"buttons","buttons",1255256819),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"label","label",1116631654),"OK"], null)], null)], null));
+lt.plugins.refheap.link = (function link(url){var e__8199__auto__ = crate.core.html.call(null,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"a","a",1013904339),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"href","href",1017115293),url], null),url], null));var seq__11070_11079 = cljs.core.seq.call(null,cljs.core.partition.call(null,2,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"click","click",1108654330),(function (){return require("nw.gui").Shell.openExternal(url);
+})], null)));var chunk__11071_11080 = null;var count__11072_11081 = 0;var i__11073_11082 = 0;while(true){
+if((i__11073_11082 < count__11072_11081))
+{var vec__11074_11083 = cljs.core._nth.call(null,chunk__11071_11080,i__11073_11082);var ev__8200__auto___11084 = cljs.core.nth.call(null,vec__11074_11083,0,null);var func__8201__auto___11085 = cljs.core.nth.call(null,vec__11074_11083,1,null);lt.util.dom.on.call(null,e__8199__auto__,ev__8200__auto___11084,func__8201__auto___11085);
+{
+var G__11086 = seq__11070_11079;
+var G__11087 = chunk__11071_11080;
+var G__11088 = count__11072_11081;
+var G__11089 = (i__11073_11082 + 1);
+seq__11070_11079 = G__11086;
+chunk__11071_11080 = G__11087;
+count__11072_11081 = G__11088;
+i__11073_11082 = G__11089;
+continue;
+}
+} else
+{var temp__4092__auto___11090 = cljs.core.seq.call(null,seq__11070_11079);if(temp__4092__auto___11090)
+{var seq__11070_11091__$1 = temp__4092__auto___11090;if(cljs.core.chunked_seq_QMARK_.call(null,seq__11070_11091__$1))
+{var c__10644__auto___11092 = cljs.core.chunk_first.call(null,seq__11070_11091__$1);{
+var G__11093 = cljs.core.chunk_rest.call(null,seq__11070_11091__$1);
+var G__11094 = c__10644__auto___11092;
+var G__11095 = cljs.core.count.call(null,c__10644__auto___11092);
+var G__11096 = 0;
+seq__11070_11079 = G__11093;
+chunk__11071_11080 = G__11094;
+count__11072_11081 = G__11095;
+i__11073_11082 = G__11096;
+continue;
+}
+} else
+{var vec__11075_11097 = cljs.core.first.call(null,seq__11070_11091__$1);var ev__8200__auto___11098 = cljs.core.nth.call(null,vec__11075_11097,0,null);var func__8201__auto___11099 = cljs.core.nth.call(null,vec__11075_11097,1,null);lt.util.dom.on.call(null,e__8199__auto__,ev__8200__auto___11098,func__8201__auto___11099);
+{
+var G__11100 = cljs.core.next.call(null,seq__11070_11091__$1);
+var G__11101 = null;
+var G__11102 = 0;
+var G__11103 = 0;
+seq__11070_11079 = G__11100;
+chunk__11071_11080 = G__11101;
+count__11072_11081 = G__11102;
+i__11073_11082 = G__11103;
+continue;
+}
+}
+} else
+{}
+}
+break;
+}
+return e__8199__auto__;
 });
-lt.plugins.refheap.error_handler = (function error_handler(p__10941){var map__10943 = p__10941;var map__10943__$1 = ((cljs.core.seq_QMARK_.call(null,map__10943))?cljs.core.apply.call(null,cljs.core.hash_map,map__10943):map__10943);var status_text = cljs.core.get.call(null,map__10943__$1,new cljs.core.Keyword(null,"status-text","status-text",4371493274));var status = cljs.core.get.call(null,map__10943__$1,new cljs.core.Keyword(null,"status","status",4416389988));return console.log([cljs.core.str("Refheap error: "),cljs.core.str(status),cljs.core.str(" "),cljs.core.str(status_text)].join(''));
+lt.plugins.refheap.post_done = (function post_done(response){var url = cljs.core.get.call(null,response,"url");return lt.objs.popup.popup_BANG_.call(null,new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"body","body",1016933652),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"span","span",1017440956),"Posted to ",lt.plugins.refheap.link.call(null,url)], null),new cljs.core.Keyword(null,"buttons","buttons",1255256819),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"label","label",1116631654),"OK"], null)], null)], null));
+});
+lt.plugins.refheap.error_handler = (function error_handler(p__11076){var map__11078 = p__11076;var map__11078__$1 = ((cljs.core.seq_QMARK_.call(null,map__11078))?cljs.core.apply.call(null,cljs.core.hash_map,map__11078):map__11078);var status_text = cljs.core.get.call(null,map__11078__$1,new cljs.core.Keyword(null,"status-text","status-text",4371493274));var status = cljs.core.get.call(null,map__11078__$1,new cljs.core.Keyword(null,"status","status",4416389988));return console.log([cljs.core.str("Refheap error: "),cljs.core.str(status),cljs.core.str(" "),cljs.core.str(status_text)].join(''));
 });
 lt.plugins.refheap.post_to_refheap = (function post_to_refheap(){var ed = lt.objs.editor.pool.last_active.call(null);var selection = lt.objs.editor.selection.call(null,ed);var pos = lt.objs.editor.__GT_cursor.call(null,ed,"start");var endpoint = "https://www.refheap.com/api/paste";var ext = lt.objs.files.ext.call(null,new cljs.core.Keyword(null,"name","name",1017277949).cljs$core$IFn$_invoke$arity$1(new cljs.core.Keyword(null,"info","info",1017141280).cljs$core$IFn$_invoke$arity$1(cljs.core.deref.call(null,ed))));var text = ((cljs.core.seq.call(null,selection))?selection:(function (){lt.objs.editor.select_all.call(null,ed);
 return lt.objs.editor.selection.call(null,ed);
 })());lt.objs.editor.set_selection.call(null,ed,pos,pos);
 return ajax.core.POST.call(null,endpoint,new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null,"params","params",4313443576),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"contents","contents",4741549708),text,new cljs.core.Keyword(null,"language","language",3695281866),ext], null),new cljs.core.Keyword(null,"format","format",4040092521),new cljs.core.Keyword(null,"raw","raw",1014016922),new cljs.core.Keyword(null,"error-handler","error-handler",1866823671),lt.plugins.refheap.error_handler,new cljs.core.Keyword(null,"handler","handler",1706707644),lt.plugins.refheap.post_done], null));
 });
-lt.objs.command.command.call(null,new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"command","command",1964298941),new cljs.core.Keyword("lt.plugins.refheap","post-to-refheap","lt.plugins.refheap/post-to-refheap",2498030471),new cljs.core.Keyword(null,"desc","desc",1016984067),"refheap: Post to refheap",new cljs.core.Keyword(null,"exec","exec",1017031683),(function (){return lt.plugins.refheap.post_to_refheap.call(null);
+lt.objs.command.command.call(null,new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"command","command",1964298941),new cljs.core.Keyword("lt.plugins.refheap","post-to-refheap","lt.plugins.refheap/post-to-refheap",2498030471),new cljs.core.Keyword(null,"desc","desc",1016984067),"Refheap: Post to refheap",new cljs.core.Keyword(null,"exec","exec",1017031683),(function (){return lt.plugins.refheap.post_to_refheap.call(null);
 })], null));
 }
 
