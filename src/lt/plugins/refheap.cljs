@@ -29,7 +29,7 @@
     (editor/set-selection ed pos pos)
     (POST endpoint
           {:params {:contents text
-                    :language "clojure"}
+                    :language ".clj"}
            :format :raw
            :error-handler error-handler
            :handler post-done})))
