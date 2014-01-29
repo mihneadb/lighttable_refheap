@@ -3,47 +3,36 @@
             [lt.objs.editor :as editor]
             [lt.objs.editor.pool :as pool]
             [lt.objs.tabs :as tabs]
+            [lt.objs.popup :as popup]
             [lt.objs.command :as cmd]
             [ajax.core :refer [POST]])
   (:require-macros [lt.macros :refer [defui behavior]]))
 
-(defui hello-panel [this]
-  [:h1 "Hello from refheap"])
-
-(object/object* ::refheap.hello
-                :tags [:refheap.hello]
-                :name "refheap"
-                :init (fn [this]
-                        (hello-panel this)))
-
-(behavior ::on-close-destroy
-          :triggers #{:close}
-          :reaction (fn [this]
-                      (when-let [ts (:lt.objs.tabs/tabset @this)]
-                        (when (= (count (:objs @ts)) 1)
-                          (tabs/rem-tabset ts)))
-                      (object/raise this :destroy)))
-
-
-(cmd/command {:command ::say-hello
-              :desc "refheap: Say Hello"
-              :exec (fn []
-                      (.log js/console "yo"))})
-
-
 
 (defn post-done [response]
-  (.log js/console (str response)))
+  (let [url (get response "url")]
+    (popup/popup! {:body [:span "Posted to " [:a {:href url} url]] :buttons [{:label "OK"}]})))
+
+(defn error-handler [{:keys [status status-text]}]
+  (.log js/console (str "Refheap error: " status " " status-text)))
 
 (defn post-to-refheap []
   (let [ed (pool/last-active)
-        text (editor/selection ed)
-        endpoint "https://www.refheap.com/api/paste"]
+        selection (editor/selection ed)
+        pos (editor/->cursor ed "start")
+        endpoint "https://www.refheap.com/api/paste"
+        text (if (seq selection)
+               selection
+               (do (editor/select-all ed)
+                   (editor/selection ed)))]
+    ; restore selection
+    (editor/set-selection ed pos pos)
     (POST endpoint
           {:params {:contents text
-                    :language "clj"}
+                    :language "clojure"}
+           :format :raw
+           :error-handler error-handler
            :handler post-done})))
-
 
 (cmd/command {:command ::post-to-refheap
               :desc "refheap: Post to refheap"
