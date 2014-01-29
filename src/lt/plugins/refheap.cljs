@@ -2,6 +2,7 @@
   (:require [lt.object :as object]
             [lt.objs.editor :as editor]
             [lt.objs.editor.pool :as pool]
+            [lt.objs.files :as files]
             [lt.objs.tabs :as tabs]
             [lt.objs.popup :as popup]
             [lt.objs.command :as cmd]
@@ -11,7 +12,8 @@
 
 (defn post-done [response]
   (let [url (get response "url")]
-    (popup/popup! {:body [:span "Posted to " [:a {:href url} url]] :buttons [{:label "OK"}]})))
+;    (popup/popup! {:body [:span "Posted to " [:a {:href url} url]] :buttons [{:label "OK"}]})))
+    (popup/popup! {:body (str "Posted to " url) :buttons [{:label "OK"}]})))
 
 (defn error-handler [{:keys [status status-text]}]
   (.log js/console (str "Refheap error: " status " " status-text)))
@@ -21,7 +23,8 @@
         selection (editor/selection ed)
         pos (editor/->cursor ed "start")
         endpoint "https://www.refheap.com/api/paste"
-        text (if (seq selection)
+        ext (-> @ed :info :name files/ext)
+        text (if (seq selection) ; if nothing is selected, send the whole file
                selection
                (do (editor/select-all ed)
                    (editor/selection ed)))]
@@ -29,7 +32,7 @@
     (editor/set-selection ed pos pos)
     (POST endpoint
           {:params {:contents text
-                    :language ".clj"}
+                    :language ext}
            :format :raw
            :error-handler error-handler
            :handler post-done})))
