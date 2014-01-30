@@ -37,7 +37,7 @@
     (editor/set-selection ed pos pos)
     (POST endpoint
           {:params {:contents text
-                    :language ext}
+                    :language (str "." ext)}
            :format :raw
            :error-handler error-handler
            :handler post-done})))

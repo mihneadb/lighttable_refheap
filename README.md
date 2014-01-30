@@ -9,7 +9,3 @@ file if there's nothing selected, by using the
 
 The plugin will try to detect the language you are using
 by looking at the edited file's extension.
-
-
-*Note*: Refheap doesn't know about ClojureScript at the moment.
-I opened an [issue](https://github.com/Raynes/refheap/issues/125).
